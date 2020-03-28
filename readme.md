@@ -7,11 +7,7 @@
 ## Install
 
 ```sh
-# npm
-$ npm install -g @stoe/wirvsvirus-topics-cli
-
-# yarn
-$ yarn global add @stoe/wirvsvirus-topics-cli
+$ npm i -g wirvsvirus-topics-cli
 ```
 
 ## Usage
