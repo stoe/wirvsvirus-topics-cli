@@ -1,0 +1,69 @@
+{
+  "name": "wirvsvirus-topics-cli",
+  "version": "0.0.1",
+  "description": "Add #wirvsvirus, #covid-19, #coronavirus topics to your GitHub repository",
+  "keywords": [
+    "wirvsvirus",
+    "github",
+    "topics",
+    "cli"
+  ],
+  "author": {
+    "name": "Stefan Stölzle",
+    "email": "stefan@stoelzle.me",
+    "url": "https://github.com/stoe"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/stoe/wirvsvirus-topics-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/stoe/wirvsvirus-topics-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stoe/wirvsvirus-topics-cli/issues"
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6",
+    "yarn": ">=1"
+  },
+  "bin": {
+    "wirvsvirus-topics": "./index.js"
+  },
+  "directories": {
+    "lib": "utils",
+    "test": "__tests__"
+  },
+  "files": [
+    "utils",
+    "index.js"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "pretest": "github-lint",
+    "test": "ava",
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "@octokit/graphql": "^4.3.1",
+    "chalk": "^3.0.0",
+    "cli-handle-error": "^4.1.0",
+    "cli-welcome": "^1.4.0",
+    "git-remote-origin-url": "^3.1.0",
+    "meow": "^6.1.0",
+    "ora": "^4.0.3",
+    "update-notifier": "^4.1.0"
+  },
+  "devDependencies": {
+    "ava": "^3.5.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-github": "^3.4.1"
+  },
+  "ava": {
+    "files": [
+      "__test__/*.js"
+    ],
+    "failFast": true,
+    "verbose": true
+  }
+}
