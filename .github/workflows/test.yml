@@ -26,6 +26,6 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ matrix.node }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install --ignore-scripts --pure-lockfile
+      - run: yarn install
         if: steps.yarn-cache.outputs.cache-hit != 'true'
-      - run: ./node_modules/.bin/lerna run test
+      - run: yarn test
