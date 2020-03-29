@@ -57,13 +57,12 @@
   "devDependencies": {
     "ava": "^3.5.1",
     "eslint": "^6.8.0",
-    "eslint-plugin-github": "^3.4.1"
+    "eslint-plugin-github": "^3.4.1",
+    "execa": "^4.0.0"
   },
   "ava": {
     "files": [
       "__test__/*.js"
-    ],
-    "failFast": true,
-    "verbose": true
+    ]
   }
 }

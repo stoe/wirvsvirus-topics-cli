@@ -1,3 +1,8 @@
 const test = require('ava')
+const execa = require('execa')
 
-test.todo('wirvsvirus-topics-cli')
+test('wirvsvirus-topics', async (t) => {
+  const {stdout} = await execa('./index.js', ['-v'])
+
+  t.true(stdout.length > 0)
+})
