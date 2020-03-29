@@ -1,0 +1,38 @@
+on:
+  push:
+    tags:
+      - 'v*'
+
+name: Publish
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Publish to npm
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+          registry-url: 'https://npm.pkg.github.com'
+      - uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-12.x-yarn-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Publish to GitHub Packages
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@stoe'
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
