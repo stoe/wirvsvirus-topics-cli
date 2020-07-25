@@ -42,17 +42,17 @@ module.exports = meow(
       replace: {
         type: 'boolean',
         alias: 'r',
-        default: false,
+        default: false
       },
       topic: {
         type: 'string',
         alias: 't',
-        default: '',
+        default: ''
       },
       token: {
         type: 'string',
-        default: process.env.GITHUB_TOKEN,
-      },
-    },
-  },
+        default: process.env.GITHUB_TOKEN
+      }
+    }
+  }
 )

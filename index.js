@@ -3,7 +3,7 @@
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', (err) => {
+process.on('unhandledRejection', err => {
   handleError(`UNHANDLED ERROR`, err)
 })
 
@@ -27,11 +27,11 @@ const pkg = require('./package.json')
       color: `#ffffff`,
       bold: false,
       clear: true,
-      version: `v${pkg.version}`,
+      version: `v${pkg.version}`
     })
     updateNotifier({
       pkg,
-      shouldNotifyInNpmScript: true,
+      shouldNotifyInNpmScript: true
     }).notify({isGlobal: true})
 
     // Get options/flags
@@ -60,17 +60,13 @@ const pkg = require('./package.json')
     } else {
       const remote = await require('git-remote-origin-url')()
 
-      // eslint-disable-next-line prettier/prettier
-      ;[owner, repo] = remote
-        .split(':')[1]
-        .split('.')[0]
-        .split('/')
+      ;[owner, repo] = remote.split(':')[1].split('.')[0].split('/')
     }
 
     const github = graphql.defaults({
       headers: {
-        authorization: `bearer ${token}`,
-      },
+        authorization: `bearer ${token}`
+      }
     })
 
     const {repository} = await github(
@@ -88,11 +84,11 @@ const pkg = require('./package.json')
       }`,
       {
         owner,
-        repo,
-      },
+        repo
+      }
     )
 
-    const _old = repository.repositoryTopics.nodes.map((node) => {
+    const _old = repository.repositoryTopics.nodes.map(node => {
       return node.topic.name
     })
 
@@ -100,8 +96,8 @@ const pkg = require('./package.json')
       topics = [...new Set(_old.concat(topics))]
     }
 
-    topics = topics.filter((x) => {
-      return x !== ''
+    topics = topics.filter(x => {
+      if (typeof x === 'string') return x !== ''
     })
 
     const {updateTopics} = await github(
@@ -121,16 +117,16 @@ const pkg = require('./package.json')
       {
         owner,
         repo: repository.id,
-        topics,
-      },
+        topics
+      }
     )
 
-    const _new = updateTopics.repository.repositoryTopics.nodes.map((node) => {
+    const _new = updateTopics.repository.repositoryTopics.nodes.map(node => {
       return node.topic.name
     })
 
     const _nwo = `${owner}/${repo}`
-    const _colored = _new.map((i) => {
+    const _colored = _new.map(i => {
       return `${magenta(i)}`
     })
 

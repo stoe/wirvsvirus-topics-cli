@@ -1,32 +1,52 @@
 on:
-  push:
-    branches: [master]
   pull_request:
-    branches: [master]
+  push:
+    branches-ignore:
+      - main
 
 name: Test
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        node: [12.x, 13.x]
-    name: Test on Node v${{ matrix.node }}
+        node-version: [12.x, 14.x]
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          node-version: ${{ matrix.node }}
-          registry-url: 'https://npm.pkg.github.com'
-      - uses: actions/cache@v1
-        id: yarn-cache
+          lfs: true
+
+      - name: Setup node
+        uses: actions/setup-node@v1
         with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ matrix.node }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-      - run: yarn test
+          node-version: ${{ matrix.node-version }}
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Install Dependencies
+        run: npm install --ignore-scripts --pure-lockfile
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+
+      - name: Build
+        run: npm run build --if-present
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CI: true
+
+      - name: Test
+        run: npm test
+        env:
           CI: true

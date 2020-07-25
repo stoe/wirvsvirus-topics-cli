@@ -1,6 +1,6 @@
 {
   "name": "wirvsvirus-topics-cli",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Add #wirvsvirus, #covid-19, #coronavirus topics to your GitHub repository",
   "keywords": [
     "wirvsvirus",
@@ -24,8 +24,7 @@
   },
   "engines": {
     "node": ">=12",
-    "npm": ">=6",
-    "yarn": ">=1"
+    "npm": ">=6"
   },
   "bin": {
     "wirvsvirus-topics": "./index.js"
@@ -40,29 +39,32 @@
   ],
   "main": "index.js",
   "scripts": {
-    "pretest": "github-lint",
-    "test": "ava",
+    "pretest": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
+    "test": "eslint **/*.js && ava",
     "start": "node ./index.js"
   },
   "dependencies": {
-    "@octokit/graphql": "^4.3.1",
-    "chalk": "^3.0.0",
-    "cli-handle-error": "^4.1.0",
-    "cli-welcome": "^1.4.0",
+    "@octokit/graphql": "^4.5.6",
+    "chalk": "^4.1.0",
+    "cli-handle-error": "^4.4.0",
+    "cli-welcome": "^2.2.2",
     "git-remote-origin-url": "^3.1.0",
-    "meow": "^6.1.0",
-    "ora": "^4.0.3",
-    "update-notifier": "^4.1.0"
+    "meow": "^7.1.1",
+    "ora": "^5.1.0",
+    "update-notifier": "^4.1.1"
   },
   "devDependencies": {
-    "ava": "^3.5.1",
-    "eslint": "^6.8.0",
-    "eslint-plugin-github": "^3.4.1",
-    "execa": "^4.0.0"
+    "@github/prettier-config": "^0.0.4",
+    "ava": "^3.12.1",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-github": "^4.1.1",
+    "execa": "^4.0.3"
   },
   "ava": {
     "files": [
       "__test__/*.js"
     ]
-  }
+  },
+  "prettier": "@github/prettier-config"
 }
