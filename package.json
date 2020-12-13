@@ -49,7 +49,7 @@
     "cli-handle-error": "^4.4.0",
     "cli-welcome": "^2.2.2",
     "git-remote-origin-url": "^3.1.0",
-    "meow": "^7.1.1",
+    "meow": "^8.0.0",
     "ora": "^5.1.0",
     "update-notifier": "^5.0.0"
   },
