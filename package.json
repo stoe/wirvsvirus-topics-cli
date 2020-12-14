@@ -44,19 +44,19 @@
     "start": "node ./index.js"
   },
   "dependencies": {
-    "@octokit/graphql": "^4.5.6",
+    "@octokit/graphql": "^4.5.8",
     "chalk": "^4.1.0",
     "cli-handle-error": "^4.4.0",
     "cli-welcome": "^2.2.2",
     "git-remote-origin-url": "^3.1.0",
     "meow": "^8.0.0",
     "ora": "^5.1.0",
-    "update-notifier": "^5.0.0"
+    "update-notifier": "^5.0.1"
   },
   "devDependencies": {
     "@github/prettier-config": "^0.0.4",
-    "ava": "^3.13.0",
-    "eslint": "^7.12.0",
+    "ava": "^3.14.0",
+    "eslint": "^7.15.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-github": "^4.1.1",
     "execa": "^5.0.0"
