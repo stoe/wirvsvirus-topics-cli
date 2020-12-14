@@ -1,6 +1,6 @@
 on:
   push:
-    tags: ['v*']
+    tags: ['v*.*.*']
 
 name: Publish
 
@@ -9,11 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # Publish to npm
+
       - uses: actions/setup-node@v1
         with:
           node-version: 12.x
           registry-url: 'https://registry.npmjs.org/'
+
       - name: npm publish
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
