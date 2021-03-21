@@ -14,14 +14,7 @@
     "url": "https://github.com/stoe"
   },
   "license": "MIT",
-  "homepage": "https://github.com/stoe/wirvsvirus-topics-cli#readme",
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@github.com/stoe/wirvsvirus-topics-cli.git"
-  },
-  "bugs": {
-    "url": "https://github.com/stoe/wirvsvirus-topics-cli/issues"
-  },
+  "repository": "github:stoe/wirvsvirus-topics-cli",
   "engines": {
     "node": ">=12",
     "npm": ">=6"
